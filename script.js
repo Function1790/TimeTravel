@@ -13,6 +13,10 @@ function updateDataView() {
     energyView.innerText = `${energy}J`
 }
 
+function randint(range) {
+    return Math.floor(Math.random() * range)
+}
+
 //[----------------<Vector>----------------]
 class Vector {
     constructor(x, y) {
@@ -31,8 +35,14 @@ class Vector {
         return this.x ** 2 + this.y ** 2
     }
     normalized() {
-        var size = this.sizeSquare()
+        var size = Math.sqrt(this.sizeSquare())
+        if (size == 0) {
+            return new Vector(0, 0)
+        }
         return new Vector(this.x / size, this.y / size)
+    }
+    toStr() {
+        return `{x: ${this.x}, y: ${this.y}}`
     }
 }
 
@@ -81,8 +91,8 @@ function interactWith(A, B) {
         //After
         var v1_After = v1 + B.mass * preCalc
         var v2_After = v2 - A.mass * preCalc
-        v1_normalize.mul(-v1_After)
-        v2_normalize.mul(-v2_After)
+        v1_normalize.mul(-v2_After)
+        v2_normalize.mul(-v1_After)
 
         A.vel = v1_normalize
         B.vel = v2_normalize
@@ -115,10 +125,11 @@ class Atom {
 }
 
 //[----------------<Main>----------------]
-const atoms = [
-    new Atom([200, 200], [3, 3], 1, 15),
-    new Atom([350, 400], [-1, -2], 3, 10),
-]
+const atoms = []
+
+for (var i = 0; i < 100; i++) {
+    atoms.push(new Atom([Math.random() * 800, Math.random() * 800], [2 + randint(10), 2 + randint(10)], 3, 5))
+}
 
 function render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
