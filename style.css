@@ -1,5 +1,6 @@
 * {
     font-size: 30px;
+    user-select: none;
 }
 
 body {
@@ -9,4 +10,38 @@ body {
 canvas {
     background-color: white;
     border: 3px solid black;
+}
+
+.wrap{
+    display: flex;
+    flex-direction: column;
+}
+
+.dataView {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 800px;
+    margin-bottom: 20px;
+}
+
+.text{
+    width: 200px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 60px;
+    border: 2px solid rgb(97, 97, 97);
+    color: rgb(97, 97, 97);
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(97, 97, 97);
+    color: white;
 }

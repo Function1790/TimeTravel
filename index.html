@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="style.css">
-        <title>Document</title>
-    </head>
-    <body>
-        <canvas id="canvas" width="800" height="800"></canvas>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="800"></canvas>
+    <div class="wrap">
         <div class="dataView">
-            <div class="energy">100J</div>
+            <div class="energy text">100J</div>
+            <div class="playBtn button">PLAY</div>
         </div>
-        <script src="script.js"></script>
-    </body>
-    
+        <div class="dataView">
+            <div class="errorRate text">error=0%</div>
+            <div class="reverseBtn button">REV</div>
+        </div>
+        <div class="dataView">
+            <div id="minError" class="text">error=0%</div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
 </html>
