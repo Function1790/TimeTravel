@@ -171,7 +171,7 @@ function interactWith(A, B) {
     // A, B => Atom
     gravityBetween(A, B)
     if (isCrashed(A, B)) {
-        //crashBetween(A, B)
+        crashBetween(A, B)
     }
 }
 
@@ -201,20 +201,19 @@ class Atom {
         this.vel.y += 0.5
     }
     move() {
-        if (isSkipInRev) {
-            print("Skiped" + this.vel.toStr())
-        }
-        data1.push(this.vel.y)
         this.vel.x *= operateCrashWall(this.x, this.vel.x)
         this.vel.y *= operateCrashWall(this.y, this.vel.y)
-        this.vel.y += 1
         if (isSkipInRev) {
-            isSkipInRev = false
-            return
+            this.vel.y -= 1
+        } else {
+            this.vel.y += 1
         }
-        if (!isSkipInRev) {
-            this.pos.add(this.vel)
-        }
+
+        data2.push(this.vel.y)
+
+        this.pos.add(this.vel)
+        data1.push(this.pos.x)
+
         isSkipInRev = false
     }
     getErrorRate() {
@@ -237,8 +236,8 @@ class Atom {
 
 //[----------------<Main>----------------]
 const atoms = [
-    new Atom([100, 100], [1, 0], 5, 15),
-    //new Atom([140, 240], [1, -1], 5, 15)
+    new Atom([100, 100], [2, 0], 5, 15),
+    //new Atom([140, 240], [1, 0], 5, 15)
 ]
 
 /*for (var i = 0; i < 2; i++) {
